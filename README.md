@@ -79,4 +79,14 @@ static domain_name_servers=192.168.0.1
 $ reboot
 ```
 
-### Usage
+## Usage
+
+```
+$ git clone https://github.com/kun432/ansible-raspberry-pi.git
+```
+
+fix ```hosts``` to be suitable for your environment.
+
+```
+$ ansible-playbook -v -i hosts site.yaml --ask-pass -u pi
+```

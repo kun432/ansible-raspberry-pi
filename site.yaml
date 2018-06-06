@@ -1,0 +1,39 @@
+- hosts: rpi3
+  gather_facts: false
+  become: yes
+  vars:
+    apt:
+      packages:
+        - git
+        - python-apt
+        - nodejs
+        - npm
+    sys:
+      locale: 'ja_JP.UTF-8'
+      timezone: 'Asia/Tokyo'
+
+  tasks:
+  - name: apt-get upgrade
+    apt:
+      name: '*'
+      state: latest
+
+  - name: apt-get upgrade
+    apt:
+      upgrade: dist
+
+  - name: install apt packages
+    apt: 
+      name: '{{ item.name | default(item) }}'
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+    with_items: '{{ apt.packages }}'
+
+  - name: set locale to '{{ sys.locale }}'
+    locale_gen:
+      name: '{{ sys.locale }}'
+      state: present
+  - name: set timezone to '{{ sys.timezone}}'
+    timezone:
+      name: '{{ sys.timezone }}'
