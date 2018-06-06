@@ -6,8 +6,7 @@
       packages:
         - git
         - python-apt
-        - nodejs
-        - npm
+        - libavahi-compat-libdnssd-dev
     sys:
       locale: 'ja_JP.UTF-8'
       timezone: 'Asia/Tokyo'
